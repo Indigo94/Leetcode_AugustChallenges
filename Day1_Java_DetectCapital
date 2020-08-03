@@ -1,0 +1,43 @@
+class Solution {
+public boolean detectAllCapitals(char[] wordArray) {
+		for (int i = 0; i < wordArray.length; i++) {
+			if (wordArray[i] >= 65 && wordArray[i] <= 90) {
+				continue;
+			} else {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public boolean detectAllLowercase(char[] wordArray) {
+		for (int i = 0; i < wordArray.length; i++) {
+			if (wordArray[i] >= 97 && wordArray[i] <= 122) {
+				continue;
+			} else {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public boolean detectOneUppercase(char[] wordArray) {
+		for (int i = 1; i < wordArray.length; i++) {
+			if (wordArray[0] >= 65 && wordArray[0] <= 90 && wordArray[i] >= 97 && wordArray[i] <= 122) {
+				continue;
+			} else {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public boolean detectCapitalUse(String word) {
+		char[] wordArray = word.toCharArray();
+		boolean firstCase = detectAllCapitals(wordArray);
+		boolean secondCase = detectAllLowercase(wordArray);
+		boolean thirdCase = detectOneUppercase(wordArray);
+		return firstCase == false && secondCase == false && thirdCase == false ? false : true;
+
+	}
+}
