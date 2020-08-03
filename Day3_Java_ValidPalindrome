@@ -1,0 +1,40 @@
+	public boolean isPalindrome(String s)
+	{
+  //for getting the actual amount of valid letters in palindrome
+		int counter = 0;
+    //convert string to charArray
+		char[] stringCharArray = s.toCharArray();
+    //Will hold all valid palindromes
+		char[] newCharArray = new char[s.length()];
+    //If it's a valid palindrome, add it to newCharArray.
+		for(int i = 0; i < stringCharArray.length; i++)
+		{
+		if ((int) stringCharArray[i] >= 65 && (int) stringCharArray[i] <= 90 || (int) stringCharArray[i] >= 97 && (int) stringCharArray[i] <= 122 || (int) stringCharArray[i] >= 48 && (int) stringCharArray[i] <=  57)
+		{
+			if ((int) stringCharArray[i] >= 65 && (int) stringCharArray[i] <= 90)
+			{
+				newCharArray[counter++] = (char)((int)stringCharArray[i] + 32);
+			}
+			else
+			{
+			newCharArray[counter++] = stringCharArray[i];
+			}
+		}
+		}
+    //final char array
+		char[] finalChar = new char[counter];
+    //Add all the valid palindromes to our final array
+		for(int i = 0; i < counter; i++)
+		{
+			finalChar[i] =newCharArray[i];
+		}
+    //compares letters starting from opposite ends. not true, return false. if it's able to complete everything, it means that it's true.
+		for(int i = 0; i < finalChar.length;i++)
+		{
+			if(finalChar[i] != finalChar[finalChar.length-i-1])
+			{
+				return false;
+			}
+		}
+		return true;
+		}
