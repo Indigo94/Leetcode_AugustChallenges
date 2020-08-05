@@ -1,0 +1,53 @@
+class WordDictionary {
+
+	/** Initialize your data structure here. */
+	// List<String> words = null;
+    HashSet<String> words = null;
+
+	public WordDictionary() {
+		// words = new ArrayList<String>();
+        words = new HashSet<String>();
+	}
+
+	/** Adds a word into the data structure. */
+	public void addWord(String word) {
+        if(words.size() <= 100) 
+        {
+		words.add(word);
+        }
+	}
+
+	/**
+	 * Returns if the word is in the data structure. A word could contain the dot
+	 * character '.' to represent any one letter.
+	 */
+	public boolean search(String word) {
+		StringBuffer sbMain = new StringBuffer().append(word);
+		for (String tempWord : words) {
+			if (tempWord.length() != sbMain.toString().length()) {
+				continue;
+			}
+			if (tempWord.equals(word)) {
+				return true;
+			} else if (word.contains(".")) {
+				StringBuffer sbTemp = new StringBuffer().append(tempWord);
+				for (int i = 0; i < word.length(); i++) {
+					if ((i + 1 == word.length() && sbMain.charAt(i) == sbTemp.charAt(i))
+							|| (i + 1 == word.length() && sbMain.charAt(i) == '.')) {
+						return true;
+					}
+					if (sbMain.charAt(i) == '.') {
+						continue;
+					}
+					if (sbMain.charAt(i) != sbTemp.charAt(i)) {
+						break;
+					}
+
+				}
+
+			}
+		}
+		return false;
+
+	}
+}
